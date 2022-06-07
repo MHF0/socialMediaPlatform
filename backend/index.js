@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const registerRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
+
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
 
 app.use("/api", registerRouter);
+app.use("/api/user", userRouter);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
