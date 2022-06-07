@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
+const registerRouter = require("./routes/auth");
+
 const app = express();
 
 // Mongoose Connection
@@ -19,6 +21,8 @@ try {
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
+
+app.use("/api", registerRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
