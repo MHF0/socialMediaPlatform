@@ -8,7 +8,7 @@ const app = express();
 
 // Mongoose Connection
 try {
-  mongoose.connect("mongodb://localhost/test");
+  mongoose.connect(process.env.MONGO_URI);
   console.log("Connected to MongoDB");
 } catch (error) {
   throw error;
