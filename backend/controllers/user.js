@@ -88,9 +88,27 @@ const removeFollwoersAndFollowing = async (req, res) => {
   }
 };
 
+const getUserSuggesterBySearch = async (req, res) => {
+  try {
+    const users = await userModel.find({
+      name: { $regex: req.query.name, $options: "i" },
+    });
+    res.json({
+      success: true,
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   updateUser,
   getUserById,
   addFollwoersAndFollowing,
   removeFollwoersAndFollowing,
+  getUserSuggesterBySearch,
 };
