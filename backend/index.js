@@ -7,6 +7,7 @@ require("dotenv").config();
 const registerRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const postRouter = require("./routes/post");
+const commentRouter = require("./routes/comment");
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.use(bodyParser.json({ limit: "2mb" }));
 app.use("/api", registerRouter);
 app.use("/api/user", userRouter);
 app.use("/api/post", postRouter);
-
+app.use("/api/comment", commentRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
