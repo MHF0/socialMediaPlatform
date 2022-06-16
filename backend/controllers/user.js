@@ -2,11 +2,13 @@ const userModel = require("../models/user");
 
 const updateUser = async (req, res) => {
   try {
-    const { name, email, avatar, followers, following } = req.body;
+    const { firstname, lastname, username, email, avatar } = req.body;
 
     const user = await userModel.findByIdAndUpdate(req.user._id, {
       $set: {
-        name,
+        firstname,
+        lastname,
+        username,
         email,
         avatar,
       },
@@ -103,7 +105,6 @@ const getUserSuggesterBySearch = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   updateUser,

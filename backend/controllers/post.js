@@ -22,7 +22,35 @@ const getAllPosts = async (req, res) => {
   try {
     const posts = await postModel
       .find({})
-      .populate("user", "-_id -password -createdAt -updatedAt");
+      .populate("user", "-_id -password -createdAt -updatedAt")
+      .populate("comments", "-_id -createdAt -updatedAt")
+      .populate({
+        path: "comments",
+        populate: { path: "user", select: "firstname lastname username" },
+      })
+      .populate({ path: "likes", select: "firstname lastname username" })
+      .populate({
+        path: "comments",
+        populate: { path: "likes", select: "firstname lastname username" },
+      })
+      .populate({
+        path: "comments",
+        populate: { path: "post", select: "caption image createdAt updatedAt" },
+      })
+      .populate({
+        path: "comments",
+        populate: {
+          path: "post",
+          populate: {
+            path: "user",
+            select: "firstname lastname username avatar",
+          },
+        },
+      });
+    // .populate({
+    //   path: "comments",
+    //   populate: { path: "likes", select: "name" },
+    // });
     res.json({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -31,7 +59,10 @@ const getAllPosts = async (req, res) => {
 
 const getAllPostsByUser = async (req, res) => {
   try {
-    const posts = await postModel.find({ user: req.params.id });
+    const posts = await postModel
+      .find({ user: req.params.id })
+      .populate("user")
+      .populate("comments");
     res.json({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });

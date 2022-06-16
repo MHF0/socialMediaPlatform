@@ -1,4 +1,5 @@
 const commentModel = require("../models/comment");
+const postModel = require("../models/post");
 
 const createNewComment = async (req, res) => {
   try {
@@ -9,9 +10,17 @@ const createNewComment = async (req, res) => {
       text,
       post: postId,
     });
+    console.log(postId);
     const savedComment = await newComment.save();
     if (savedComment) {
-      return res.status(200).json(savedComment);
+      const post = await postModel.findByIdAndUpdate(
+        { _id: postId },
+        {
+          $push: { comments: savedComment._id },
+        },
+        { new: true }
+      );
+      res.json({ post });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -70,4 +79,17 @@ const replyTo = async (req, res) => {
   }
 };
 
-module.exports = { createNewComment, addLike, removeLike, replyTo };
+const replies = async (req, res) => {
+  const { commentId } = req.params;
+  try {
+    const comment = await commentModel
+      .findById(commentId)
+      .populate("replies")
+      .populate({ path: "replies.user", select: "name avatar" });
+    res.json({ comment });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createNewComment, addLike, removeLike, replyTo, replies };

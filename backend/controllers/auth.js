@@ -4,8 +4,14 @@ const bcrypt = require("bcrypt");
 
 const register = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-    const newUser = userModel({ email, name, password });
+    const { firstname, lastname, username, email, password } = req.body;
+    const newUser = userModel({
+      email,
+      firstname,
+      lastname,
+      username,
+      password,
+    });
 
     const user = await newUser.save();
     if (user) {
@@ -17,7 +23,6 @@ const register = async (req, res, next) => {
     }
   } catch (error) {
     if (error.code === 11000) {
-      console.log("here");
       next();
     } else {
       res.status(500).json({
