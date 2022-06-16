@@ -47,10 +47,6 @@ const getAllPosts = async (req, res) => {
           },
         },
       });
-    // .populate({
-    //   path: "comments",
-    //   populate: { path: "likes", select: "name" },
-    // });
     res.json({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });
