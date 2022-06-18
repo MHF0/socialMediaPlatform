@@ -1,0 +1,110 @@
+.main1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+
+
+.left1 {
+    fill: rgb(255, 255, 255);
+}
+
+.insideImage {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.left1 {
+    background-image: url('https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.left1 svg {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+}
+
+.right1 {
+    padding: 10%;
+}
+
+.right1 h1 {
+    margin-top: 35px;
+    font-size: 55px;
+    letter-spacing: 6px;
+}
+
+.right1 h2 {
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.btn1 {
+    width: 100%;
+    padding: 15px;
+    background-color: rgb(29, 155, 240);
+    color: #fff;
+    margin: 30px 0;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btn22 {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid rgb(29, 155, 240);
+    color: rgb(29, 155, 240);
+    background-color: transparent;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.right-div {
+    width: 70%;
+}
+
+.right-div p {
+    margin-top: 10px;
+}
+
+span {
+    color: rgb(29, 155, 240);
+    text-align: center;
+    /* margin-right: em; */
+}
+
+.modal {
+    background-color: black;
+    border-radius: 3em;
+    width: 50%;
+    height: 50%;
+    
+}
+
+.close {
+    position: absolute;
+    top: 2em;
+    right: 3em;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background-color: black;
+
+}

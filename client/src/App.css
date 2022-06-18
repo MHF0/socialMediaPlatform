@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+    /* background-color: black */
+}
+
+body {
+    background-color: black;
+    font-family: “Helvetica Neue”,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+h1 {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
