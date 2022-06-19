@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
 import Modal from "react-modal";
-import axios from "axios";
-// import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-
+import Register from "../Register";
 Modal.setAppElement("#root");
 
 const WelcomeComponent = () => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [modalIsOpen2, setmodalIsOpen2] = useState(false);
 
@@ -57,12 +48,13 @@ const WelcomeComponent = () => {
                   content: {
                     position: "absolute",
                     top: "10em",
-                    left: "30em",
-                    right: "3em",
+                    left: "40em",
+                    right: "1em",
                     bottom: "4em",
                   },
                 }}
               >
+                <Register />
                 <button onClick={() => setmodalIsOpen(false)} className="close">
                   X
                 </button>
@@ -77,7 +69,6 @@ const WelcomeComponent = () => {
                 className="modal"
                 style={{
                   overlay: {
-                  
                     position: "fixed",
                     top: 0,
                     left: 0,
@@ -87,8 +78,8 @@ const WelcomeComponent = () => {
                   content: {
                     position: "absolute",
                     top: "10em",
-                    left: "30em",
-                    right: "3em",
+                    left: "40em",
+                    right: "1em",
                     bottom: "4em",
                   },
                 }}

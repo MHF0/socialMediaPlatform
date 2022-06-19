@@ -81,7 +81,7 @@
 }
 
 .right-div p {
-    margin-top: 10px;
+    margin-top: 10em;
 }
 
 span {
@@ -92,17 +92,17 @@ span {
 
 .modal {
     background-color: black;
-    border-radius: 3em;
-    width: 50%;
-    height: 50%;
+    border-radius: 2em;
+    width: 30%;
+    height: 70%;
     
 }
 
 .close {
     position: absolute;
-    top: 2em;
-    right: 3em;
-    font-size: 30px;
+    top: 1em;
+    left: 1em;
+    font-size: 20px;
     color: white;
     cursor: pointer;
     background-color: black;

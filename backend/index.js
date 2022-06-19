@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv").config();
 
 const registerRouter = require("./routes/auth");
@@ -24,6 +25,7 @@ try {
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
+app.use(cors());
 
 app.use("/api", registerRouter);
 app.use("/api/user", userRouter);
