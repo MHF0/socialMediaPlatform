@@ -29,7 +29,8 @@ const Register = () => {
       );
       if (response) {
         dispatch(login(response.data.token));
-         navigate("/"); 
+        localStorage.setItem("userId", response.data.userId);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

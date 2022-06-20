@@ -24,6 +24,7 @@ const Login = () => {
       );
       if (response) {
         dispatch(login(response.data.token));
+        localStorage.setItem("userId", response.data.userId);
         navigate("/");
       }
     } catch (error) {

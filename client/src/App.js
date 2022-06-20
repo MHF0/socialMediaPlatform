@@ -11,20 +11,22 @@ import RightSide from "./Components/RightSide";
 const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
-    <div className="App">
+    <>
       {/* <h1>App</h1> */}
       {isLoggedIn ? (
         <>
-          <LeftSide />
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-          <RightSide />
+          <div className="App">
+            <LeftSide />
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+            <RightSide />
+          </div>
         </>
       ) : (
         <WelcomeComponent />
       )}
-    </div>
+    </>
   );
 };
 
