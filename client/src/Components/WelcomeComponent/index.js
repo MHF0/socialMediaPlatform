@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Modal from "react-modal";
 import Register from "../Register";
+import Login from "../Login";
 Modal.setAppElement("#root");
 
 const WelcomeComponent = () => {
@@ -84,6 +85,7 @@ const WelcomeComponent = () => {
                   },
                 }}
               >
+                <Login />
                 <button
                   className="close"
                   onClick={() => setmodalIsOpen2(false)}
