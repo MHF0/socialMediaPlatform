@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    avatar: { type: String },
+    avatar: {
+      type: String,
+      default:
+        "https://engage.eiturbanmobility.eu/decidim-packs/media/images/default-avatar-aaa9e55bac5d7159b847.svg",
+    },
     following: [{ type: ObjectId, ref: "User" }],
     followers: [{ type: ObjectId, ref: "User" }],
   },
