@@ -10,6 +10,7 @@ const PostContainer = () => {
   const { token } = useSelector((state) => state.auth);
   const { posts } = useSelector((state) => state.posts);
   const userId = localStorage.getItem("userId");
+  const username = localStorage.getItem("username");
 
   const [isHovover, setIsHovered] = useState(false);
   const [isHovoverLike, setIsHoveredLike] = useState(false);
@@ -56,13 +57,13 @@ const PostContainer = () => {
         userId,
       };
       const response = axios.post(
-        `${process.env.REACT_APP_API}/api/like`,
+        `${process.env.REACT_APP_API}/api/post/like/${postId}`,
         like,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(response);
+      getPosts();
     } catch (error) {
       console.log(error);
     }
@@ -120,8 +121,8 @@ const PostContainer = () => {
                   onClick={() => addLike(post._id)}
                   className={
                     post._id === postId && isHovoverLike
-                      ? "LikePostSVG LikePostSVGBefor LikePostSVGHover"
-                      : "LikePostSVG"
+                      ? ("LikePostSVG LikePostSVGBefor LikePostSVGHover")
+                      :("LikePostSVG") 
                   }
                 >
                   <svg viewBox="0 0 24 24">

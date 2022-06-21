@@ -22,6 +22,8 @@ const PostContainer = () => {
       );
       if (user) {
         setUserInfo(user.data.user);
+        console.log(user.data.user);
+        localStorage.setItem("username", user.data.user.username);
       }
     } catch (error) {
       console.log(error);

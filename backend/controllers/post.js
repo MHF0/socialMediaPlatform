@@ -40,12 +40,12 @@ const getAllPosts = async (req, res) => {
       .populate("comments", "-_id -createdAt -updatedAt")
       .populate({
         path: "comments",
-        populate: { path: "user", select: "firstname lastname username" },
+        populate: { path: "user", select: "_id firstname lastname username" },
       })
-      .populate({ path: "likes", select: "firstname lastname username" })
+      .populate({ path: "likes", select: "_id firstname lastname username" })
       .populate({
         path: "comments",
-        populate: { path: "likes", select: "firstname lastname username" },
+        populate: { path: "likes", select: "_id firstname lastname username" },
       })
       .populate({
         path: "comments",
