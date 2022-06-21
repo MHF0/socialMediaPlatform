@@ -1,4 +1,5 @@
 const postModel = require("../models/post");
+const userModel = require("../models/user");
 
 const createNewPost = async (req, res) => {
   try {
@@ -11,7 +12,20 @@ const createNewPost = async (req, res) => {
     });
     const savedPost = await newPost.save();
     if (savedPost) {
-      return res.status(200).json(savedPost);
+      const userInfo = await userModel.findById({ _id: user });
+      return res.status(200).json({
+        caption: savedPost.caption,
+        createdAt: savedPost.createdAt,
+        updatedAt: savedPost.updatedAt,
+        likes: savedPost.likes,
+        comments: savedPost.comments,
+        user: {
+          firstname: userInfo.firstname,
+          lastname: userInfo.lastname,
+          username: userInfo.username,
+          avatar: userInfo.avatar,
+        },
+      });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });

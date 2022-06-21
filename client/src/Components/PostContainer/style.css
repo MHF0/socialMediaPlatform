@@ -1,0 +1,146 @@
+.psotContatiner {
+  border-bottom: 1px solid #4d4d4d;
+  height: 6em;
+}
+
+.postPhoto img {
+  width: 6%;
+  height: 6%;
+  object-fit: cover;
+  border-radius: 100%;
+  margin: 1em;
+}
+
+.post {
+  width: 80%;
+  height: 0px;
+  border-radius: 0.1em;
+  font-size: 1.3em;
+  font-weight: 500;
+  position: relative;
+  color: #fff;
+  /* padding: 0.5em; */
+  margin-top: 1.8em;
+  background: none;
+  margin-left: 3.5em;
+  bottom: 5em;
+  outline-style: none;
+}
+
+.postName {
+  font-size: 0.5em;
+  color: #fff;
+  background: none;
+  outline-style: none;
+  margin-left: -1em;
+}
+
+.post .username {
+  font-size: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  color: #757575;
+  margin-top: 1em;
+  background: none;
+  outline-style: none;
+}
+
+.postDate {
+  color: #757575;
+  font-size: 0.5em;
+}
+
+.postCaption {
+  color: #757575;
+  margin-left: 5em;
+  font-size: 0.6em;
+  position: relative;
+  bottom: 0.8em;
+  right: 1.8em;
+}
+
+.commentSVG {
+  position: absolute;
+  top: 2.5em;
+  width: 1.3em;
+  height: 1.3em;
+  cursor: pointer;
+}
+
+.commentSVG svg {
+  width: 0.7em;
+  fill: #757575;
+  position: relative;
+  /* bottom: 0.8em; */
+  left: 0.3em;
+  top: 0.1em;
+}
+
+.commentSVGBefor::before {
+  content: attr(data-descr);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 131, 201, 0.151);
+  /* z-index: 11; */
+  position: absolute;
+  border-radius: 50%;
+}
+
+.commentSVGHover svg {
+  fill: rgb(26, 130, 201);
+}
+
+.numberOfComment {
+  color: #757575;
+  font-size: 0.5em;
+  position: relative;
+  bottom: 1.2em;
+  left: 2.7em;
+}
+
+.numberOfCommentHover {
+  color: rgb(26, 130, 201) !important;
+}
+
+.LikePostSVG {
+  position: absolute;
+  top: 2.5em;
+  width: 1.3em;
+  height: 1.3em;
+  cursor: pointer;
+  left: 6em;
+}
+
+.LikePostSVG svg {
+  width: 0.7em;
+  fill: #757575;
+  position: relative;
+  left: 0.3em;
+  top: 0.1em;
+}
+
+.LikePostSVGBefor::before {
+  content: attr(data-descr);
+  width: 100%;
+  height: 100%;
+  background-color: #ec18771e;
+  /* z-index: 11; */
+  position: absolute;
+  border-radius: 50%;
+}
+
+.LikePostSVGHover svg {
+  fill: #ec1879;
+}
+
+.numberOfLike {
+  color: #757575;
+  font-size: 0.5em;
+  position: relative;
+  bottom: 3.4em;
+  left: 15em;
+}
+
+.numberOfLikeHover {
+  color: #ec1879 !important;
+}
