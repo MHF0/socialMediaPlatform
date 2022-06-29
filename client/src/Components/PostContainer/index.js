@@ -100,6 +100,9 @@ const PostContainer = () => {
                 <LikeComponent
                   postId={post._id}
                   numberOfLike={post.likes.length}
+                  usernameTooltip={post.likes.map((element) => {
+                    return <p>{element.username}</p>;
+                  })}
                 />
               )}
             </div>

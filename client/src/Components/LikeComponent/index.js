@@ -48,11 +48,9 @@ const LikeComponent = ({ postId, numberOfLike, username, usernameTooltip }) => {
             </svg>
           </div>
           <span className={"numberOfLike numberOfLikeHover"}>
-            {/* {numberOfLike} */}
-            <div class="tooltip">
-              {/* test */}
+            <div className="tooltip">
               {numberOfLike}
-              <span class="tooltiptext">{usernameTooltip}</span>
+              <span className="tooltiptext">{usernameTooltip}</span>
             </div>
           </span>
         </div>
@@ -82,9 +80,9 @@ const LikeComponent = ({ postId, numberOfLike, username, usernameTooltip }) => {
                   : "numberOfLike"
               }
             >
-              <div class="tooltip">
+              <div className="tooltip">
                 {numberOfLike}
-                <span class="tooltiptext">Tooltip text</span>
+                <span className="tooltiptext">{usernameTooltip}</span>
               </div>
             </span>
           </div>
