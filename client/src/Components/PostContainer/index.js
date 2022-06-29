@@ -9,11 +9,10 @@ const PostContainer = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { posts } = useSelector((state) => state.posts);
-  const userId = localStorage.getItem("userId");
+
   const username = localStorage.getItem("username");
 
   const [isHovover, setIsHovered] = useState(false);
-  const [isHovoverLike, setIsHoveredLike] = useState(false);
 
   const [postId, setPostId] = useState(null);
 
@@ -35,25 +34,6 @@ const PostContainer = () => {
         const reversePost = posts.data.posts.reverse();
         dispatch(setPost(reversePost));
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addLike = (postId) => {
-    try {
-      const like = {
-        postId,
-        userId,
-      };
-      const response = axios.post(
-        `${process.env.REACT_APP_API}/api/post/like/${postId}`,
-        like,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      getPosts();
     } catch (error) {
       console.log(error);
     }
@@ -101,23 +81,18 @@ const PostContainer = () => {
                       : "numberOfComment"
                   }
                 >
-                  {post.comments.length}
+                  {post.comments && post.comments.length}
                 </span>
               </div>
-              {post.likes.length > 0 && post.likes ? (
-                post.likes.map((like) => (
-                  <>
-                    {like.username === username ? (
-                      <LikeComponent
-                        postId={post._id}
-                        numberOfLike={post.likes.length}
-                        username={true}
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </>
-                ))
+              {post.likes.length > 0 &&
+              post.likes.filter((element) => {
+                return element.username === username;
+              }).length ? (
+                <LikeComponent
+                  postId={post._id}
+                  numberOfLike={post.likes.length}
+                  username={true}
+                />
               ) : (
                 <LikeComponent
                   postId={post._id}

@@ -14,6 +14,7 @@ const createNewPost = async (req, res) => {
     if (savedPost) {
       const userInfo = await userModel.findById({ _id: user });
       return res.status(200).json({
+        _id: savedPost._id,
         caption: savedPost.caption,
         createdAt: savedPost.createdAt,
         updatedAt: savedPost.updatedAt,
@@ -86,11 +87,28 @@ const createLike = async (req, res) => {
     const post = await postModel.findByIdAndUpdate(
       { _id: postId },
       {
-        $addToSet: { likes: userId },
+        $push: { likes: userId },
       },
       { new: true }
     );
-    res.json({ post });
+    if (post) {
+      const userInfo = await userModel.findById({ _id: userId });
+
+      res.json({
+        _id: post._id,
+        likes: post.likes,
+        caption: post.caption,
+        comments: post.comments,
+        createdAt: post.createdAt,
+        updatedAt: post.updatedAt,
+        user: {
+          firstname: userInfo.firstname,
+          lastname: userInfo.lastname,
+          username: userInfo.username,
+          avatar: userInfo.avatar,
+        },
+      });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

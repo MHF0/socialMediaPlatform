@@ -7,9 +7,6 @@ export const posts = createSlice({
   },
   reducers: {
     addPost: (state, action) => {
-      console.log("====================================");
-      console.log(action.payload);
-      console.log("====================================");
       state.posts = [action.payload, ...state.posts];
     },
     setPost: (state, action) => {
@@ -28,6 +25,7 @@ export const posts = createSlice({
     },
 
     addLike: (state, action) => {
+      
       state.posts = state.posts.map((post) => {
         if (post._id === action.payload._id) {
           return post.likes.push(action.payload.userId);

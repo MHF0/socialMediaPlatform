@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { addLike } from "../redux/reducers/postReducer";
+import { updatePost } from "../redux/reducers/postReducer";
 import "./style.css";
 
 const LikeComponent = ({ postId, numberOfLike, username }) => {
-  const [isHovover, setIsHovered] = useState(false);
-  const [isHovoverLike, setIsHoveredLike] = useState(false);
+  const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
 
+  const [isHovoverLike, setIsHoveredLike] = useState(false);
+  const [checkLike, setCheckLike] = useState(false);
+
   const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  
-  const handelAddLike = () => {
+  const { posts } = useSelector((state) => state.posts);
+
+  const handelAddLike = async () => {
     try {
       const like = {
         postId,
         userId,
       };
-      const response = axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_API}/api/post/like/${postId}`,
         like,
         {
@@ -26,25 +28,17 @@ const LikeComponent = ({ postId, numberOfLike, username }) => {
         }
       );
       if (response) {
-        console.log(response);
-        dispatch(addLike(response.data.like));
+        setCheckLike(true);
+        dispatch(updatePost(response.data));
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleMouseOverLike = () => {
-    setIsHoveredLike(true);
-  };
-
-  const handleMouseOutLike = () => {
-    setIsHoveredLike(false);
-  };
-
   return (
     <>
-      {username && username ? (
+      {username || checkLike ? (
         <div>
           <div className={"LikePostSVG LikePostSVGBefor LikePostSVGHover"}>
             <svg viewBox="0 0 24 24">
@@ -61,8 +55,8 @@ const LikeComponent = ({ postId, numberOfLike, username }) => {
         <>
           <div>
             <div
-              onMouseOver={handleMouseOverLike}
-              onMouseOut={handleMouseOutLike}
+              onMouseOver={() => setIsHoveredLike(true)}
+              onMouseOut={() => setIsHoveredLike(false)}
               onClick={handelAddLike}
               className={
                 isHovoverLike
