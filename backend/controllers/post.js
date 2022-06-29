@@ -92,7 +92,7 @@ const createLike = async (req, res) => {
       { new: true }
     );
     if (post) {
-      const userInfo = await userModel.findById({ _id: userId });
+      const userInfo = await userModel.findById({ _id: post.user });
 
       res.json({
         _id: post._id,

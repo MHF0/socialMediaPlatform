@@ -25,10 +25,11 @@ export const posts = createSlice({
     },
 
     addLike: (state, action) => {
-      
+      console.log(action.payload);
+
       state.posts = state.posts.map((post) => {
         if (post._id === action.payload._id) {
-          return post.likes.push(action.payload.userId);
+          return action.payload;
         }
         return post;
       });

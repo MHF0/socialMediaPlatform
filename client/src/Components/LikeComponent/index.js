@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { updatePost } from "../redux/reducers/postReducer";
+import { addLike } from "../redux/reducers/postReducer";
 import "./style.css";
 
-const LikeComponent = ({ postId, numberOfLike, username }) => {
+const LikeComponent = ({ postId, numberOfLike, username, usernameTooltip }) => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
 
@@ -29,7 +29,7 @@ const LikeComponent = ({ postId, numberOfLike, username }) => {
       );
       if (response) {
         setCheckLike(true);
-        dispatch(updatePost(response.data));
+        dispatch(addLike(response.data));
       }
     } catch (error) {
       console.log(error);
@@ -48,7 +48,12 @@ const LikeComponent = ({ postId, numberOfLike, username }) => {
             </svg>
           </div>
           <span className={"numberOfLike numberOfLikeHover"}>
-            {numberOfLike}
+            {/* {numberOfLike} */}
+            <div class="tooltip">
+              {/* test */}
+              {numberOfLike}
+              <span class="tooltiptext">{usernameTooltip}</span>
+            </div>
           </span>
         </div>
       ) : (
@@ -77,7 +82,10 @@ const LikeComponent = ({ postId, numberOfLike, username }) => {
                   : "numberOfLike"
               }
             >
-              {numberOfLike}
+              <div class="tooltip">
+                {numberOfLike}
+                <span class="tooltiptext">Tooltip text</span>
+              </div>
             </span>
           </div>
         </>

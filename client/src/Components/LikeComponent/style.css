@@ -137,6 +137,7 @@
   color: #757575;
   font-size: 0.5em;
   position: relative;
+  display: inline-block;
   bottom: 3.4em;
   left: 15em;
 }
@@ -147,4 +148,28 @@
 
 .classtest {
   background-color: #fff;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 10em;
+  background-color: #757575;
+  color: #fff;
+  text-align: center;
+  padding: 1px 0;
+  margin-left: 0.5em;
+  position: absolute;
+  z-index: 1;
+  top: -3px;
+  left: 100%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
