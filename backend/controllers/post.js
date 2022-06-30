@@ -37,8 +37,8 @@ const getAllPosts = async (req, res) => {
   try {
     const posts = await postModel
       .find({})
-      .populate("user", "-_id -password -createdAt -updatedAt")
-      .populate("comments", "-_id -createdAt -updatedAt")
+      .populate("user", " -password -createdAt -updatedAt")
+      .populate("comments", " -createdAt -updatedAt")
       .populate({
         path: "comments",
         populate: { path: "user", select: "_id firstname lastname username" },
@@ -102,6 +102,7 @@ const createLike = async (req, res) => {
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,
         user: {
+          _id: userInfo._id,
           firstname: userInfo.firstname,
           lastname: userInfo.lastname,
           username: userInfo.username,
