@@ -148,7 +148,7 @@
   background-color: black;
   border-radius: 2em;
   width: 30%;
-  height: 60%;
+  height: 43%;
 }
 
 .close {
@@ -164,12 +164,10 @@
 .commentBorderText {
   width: 100%;
   height: 2em;
-  margin-top: 1.2em;
-  margin-bottom: 1em;
+  margin-top: 2.2em;
   padding-left: 1em;
   padding-right: 1em;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 0.9em;
   color: #757575;
   background: none;
   outline-style: none;

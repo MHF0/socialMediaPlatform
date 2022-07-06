@@ -34,6 +34,15 @@ export const posts = createSlice({
         return post;
       });
     },
+
+    createComment: (state, action) => {
+      state.posts = state.posts.map((post) => {
+        if (post._id === action.payload._id) {
+          return action.payload;
+        }
+        return post;
+      });
+    },
   },
 });
 
@@ -43,6 +52,7 @@ export const {
   updatePost,
   deletePost,
   addLike,
+  createComment,
 } = posts.actions;
 
 export default posts.reducer;

@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { createComment } from "../redux/reducers/postReducer";
 import "./style.css";
 
 const CommentComponent = ({ mainPostId }) => {
   const { posts } = useSelector((state) => state.posts);
   const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const userId = localStorage.getItem("userId");
   const [comment, setComment] = useState("");
@@ -25,6 +28,27 @@ const CommentComponent = ({ mainPostId }) => {
       );
       setcurentUser(curentUser.data.user);
       console.log(curentUser.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handelCreateComment = async () => {
+    try {
+      const newComment = await axios.post(
+        `${process.env.REACT_APP_API}/api/comment/`,
+        {
+          text: comment,
+          post: mainPostId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(createComment(newComment.data.comment));
+      console.log(posts);
     } catch (error) {
       console.log(error);
     }
@@ -74,15 +98,24 @@ const CommentComponent = ({ mainPostId }) => {
         ))}
 
       <div className="addComment">
-        <div className="CommentImage">
-          <img alt="ProfileImageComment" src={curentUser.avatar} />
+        <div className="btn-comment-container">
+          <div className="CommentImage">
+            <img alt="ProfileImageComment" src={curentUser.avatar} />
+          </div>
+          <div className="writeComment">
+            <input
+              type="text"
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
+              placeholder="Tweet your reply  "
+            />
+            <div className="postButtonComment">
+              <button className="btn-comment" onClick={handelCreateComment}>
+                Reply
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="writeComment">
-          <input type="text" placeholder="Tweet your reply  " />
-        </div>
-      </div>
-      <div className="postButton">
-        <button className="btn-comment">Reply</button>
       </div>
     </div>
   );
